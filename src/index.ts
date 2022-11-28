@@ -1,3 +1,8 @@
-let test: string = '123123'
+let value: unknown
 
-console.log(test);
+value = true // ok
+value = 42 // ok
+value = "hello world" // ok
+
+let value1: boolean = value  // Error
+
