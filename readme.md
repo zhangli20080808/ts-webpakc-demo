@@ -12,11 +12,31 @@ npm i webpack webpack-cli ts-loader typescript --save-dev
 
 ## 配置 react 项目 - 使用 ts-loader
 
-npm i react react-dom -S
-npm i @types/react @types/react-dom -D
-// npm install awesome-typescript-loader --save-dev 两个 loader 可以选择一个，前面安装了 ts-loader，可以暂时不安装这个
+# 先装react依赖
+```shell
+npm i react react-dom --save
+npm i @types/react @types/react-dom --save-dev
+# yarn add react react-dom
+# yarn add -D @types/react @types/react-dom
 
-## tsconfig.json
+# 再装个ts-loader和awesome-typescript-loader
+npm i ts-loader awesome-typescript-loader --save
+# yarn add ts-loader awesome-typescript-loader
+
+# 再装webpack开发用的
+npm i webpack-dev-server html-webpack-plugin --save-dev
+# yarn add webpack-dev-server html-webpack-plugin -D
+
+- 注意：不装types会报错
+- webpack-dev-server 用来启动一个网站
+- html-webpack-plugin用于为react程序提供模板,在webpack构建后生成html文件，
+  同时把构建好入口js文件引入到生成的html文件中
+
+```  
+### 编写html模版文件
+### 编写对应的 webpack.config.js 配置文件 
+### 增加 package.json脚本, 尝试执行 npm run start: react
+### tsconfig.json
 ```
 {
   "compilerOptions": {
@@ -55,5 +75,4 @@ babel-loader - webpack和babel通信的一个bridge，并不会去做es6的编�
 ## 基础类型 - 目标：熟悉TS的基本操作
 1. any - 任意类型，可以作为任何类型的子类，unknown不行
 2. unknown - 未知类型，任何类型都可以赋值给它，但是它不可以赋值给别的类型。可以理解为any的替代品，更为安全。
-
 3. never - 代表不可达，比如函数抛出异常的时候，返回值就是never
