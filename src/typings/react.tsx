@@ -22,14 +22,24 @@ type ReactNode =
   | null
   | undefined;
 
-interface Element {}
+// 针对于react相关 ReactElement 为顶级元素
+// 顶部 - 儿子 - 孙子   ReactElement ->  DOMElement -> DetailedReactHTMLElement
+interface DOMElement<P, T> extends ReactElement {}
+interface DetailedReactHTMLElement<P, T> extends DOMElement<P, T> {}
 
-interface DOMElement<P, T> extends Element {}
-interface DetailedReactHTMLElement<P,T> extends DOMElement<P,T> {}
+// 针对于浏览器原生类型 global  相关的
+interface Element {}
+interface HTMLElement extends Element {}
+interface HTMLInputElement extends HTMLElement {}
+
+
+
+
 /**
+ * 定义type为字符串
  * 类型为 let element = React.createElement('h1', { className: 'hello' });
  * DOMElement - 继承自ReactElement
- * P - 代表元素属性 T - 代表元素类型
+ * P - 代表元素属性 T - 代表真实DOM元素类型。渲染到页面之后
  * @param type
  * @param props
  * @param children
@@ -38,10 +48,28 @@ declare function createElement<P, T extends Element>(
   type: string, // 元素类型 字符串 h1 span dev
   props?: P | null, // 属性对象
   ...children: ReactNode[]
-): DOMElement<P, T>;
+): DetailedReactHTMLElement<P, T>;
+
+
+
+type FC<P = {}> = FunctionComponent<P>;
+
+// 2. 定义函数组件类型
+interface FunctionComponent<P = {}> {
+    (props: P, context?: any): ReactElement<any, any> | null;
+    // propTypes?: WeakValidationMap<P> | undefined;
+    // contextTypes?: ValidationMap<any> | undefined;
+    // defaultProps?: Partial<P> | undefined;
+    // displayName?: string | undefined;
+}
+interface FunctionComponentElement extends ReactElement {}
+
+ 
+
 
 // function createElement<P extends DOMAttributes<T>, T extends Element>(
 //   type: string, // 元素类型 字符串 h1 span dev
 //   props?: (ClassAttributes<T> & P) | null, // 属性对象
 //   ...children: ReactNode[]
 // ): DOMElement<P, T>;
+
