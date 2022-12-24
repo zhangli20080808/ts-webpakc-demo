@@ -1,6 +1,17 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
+
+interface Props {
+  className: string;
+}
+
+const element = React.createElement<Props, HTMLHeadElement>(
+  'h1',
+  { className: 'title' },
+  'hello'
+);
+
 // 在特定的dom节点上，创建一个root对象
 const root = createRoot(document.getElementById('root') as any);
 // 使用 root 的render方法来渲染对应的组件或者卸载组件
