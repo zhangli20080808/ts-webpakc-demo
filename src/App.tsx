@@ -1,3 +1,4 @@
+import React from 'react'
 function App() {
   return <div>我是react项目-haha</div>;
 }

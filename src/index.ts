@@ -1,8 +1,8 @@
-let value: unknown
+// let value: unknown
 
-value = true // ok
-value = 42 // ok
-value = "hello world" // ok
+// value = true // ok
+// value = 42 // ok
+// value = "hello world" // ok
 
-let value1: boolean = value  // Error
+// let value1: boolean = value  // Error
 
