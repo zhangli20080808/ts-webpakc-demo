@@ -2,17 +2,17 @@ import React, {
   DetailedReactHTMLElement,
   FunctionComponent,
   ReactElement,
+  ReactChild,
+  ReactText,
 } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
-
 interface State {
   id: string;
 }
 interface Props {
   className: string;
 }
-
 const props: Props = { className: 'title' };
 const element1: DetailedReactHTMLElement<Props, HTMLHeadingElement> =
   React.createElement<Props, HTMLHeadingElement>('h1', props, 'hello');
@@ -25,6 +25,12 @@ const Hello: FunctionComponent<Props> = (props: Props) => {
 const element2 = React.createElement<Props>(Hello, props, 'hello');
 
 // 3.类组件的定义
+interface State {
+  id: string;
+}
+interface Props {
+  className: string;
+}
 class HelloText extends React.Component<Props, State> {
   state = { id: 'dt' };
   render() {
