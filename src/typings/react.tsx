@@ -120,27 +120,27 @@ interface FunctionComponentElement<P>
 
 // type Provider<T> = ProviderExoticComponent<ProviderProps<T>>;
 // type Consumer<T> = ExoticComponent<ConsumerProps<T>>;
-interface Context<T> {
-  Provider: Provider<T>;
-  Consumer: Consumer<T>;
-  displayName?: string | undefined;
-}
-class Component<P, S> {
-  static contextType?: Context<any> | undefined;
-  context: unknown;
-  constructor(props: Readonly<P> | P);
-  constructor(props: P, context: any);
-  setState<K extends keyof S>(
-    state:
-      | ((prevState: Readonly<S>, props: Readonly<P>) => Pick<S, K> | S | null)
-      | (Pick<S, K> | S | null),
-    callback?: () => void
-  ): void;
-  forceUpdate(callback?: () => void): void;
-  render(): ReactNode;
-  readonly props: Readonly<P>;
-  state: Readonly<S>;
-  refs: {
-    [key: string]: ReactInstance;
-  };
-}
+// interface Context<T> {
+//   Provider: Provider<T>;
+//   Consumer: Consumer<T>;
+//   displayName?: string | undefined;
+// }
+// class Component<P, S> {
+//   static contextType?: Context<any> | undefined;
+//   context: unknown;
+//   constructor(props: Readonly<P> | P);
+//   constructor(props: P, context: any);
+//   setState<K extends keyof S>(
+//     state:
+//       | ((prevState: Readonly<S>, props: Readonly<P>) => Pick<S, K> | S | null)
+//       | (Pick<S, K> | S | null),
+//     callback?: () => void
+//   ): void;
+//   forceUpdate(callback?: () => void): void;
+//   render(): ReactNode;
+//   readonly props: Readonly<P>;
+//   state: Readonly<S>;
+//   refs: {
+//     [key: string]: ReactInstance;
+//   };
+// }
