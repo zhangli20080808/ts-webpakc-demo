@@ -93,3 +93,7 @@ babel-loader - webpack 和 babel 通信的一个 bridge，并不会去做 es6 �
 
 1. 创建.eslintrc.json
    npm i @typescript-eslint/eslint-plugin@2.16.0 @typescript-eslint/eslint-plugin@2.16.0
+
+## redux
+
+1. 创建仓库
