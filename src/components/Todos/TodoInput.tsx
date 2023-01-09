@@ -2,10 +2,20 @@
 import React, { CSSProperties, FC } from 'react';
 import { Todo } from '../../model';
 import { Button, Input } from 'antd';
-
-interface Props {
+import { withDefaultProps, DefaultProps } from '../../utils';
+// 默认属性
+// const defaultProps = {
+//   settings: {
+//     maxLength: 6,
+//     placeholder: '请输入',
+//   },
+// };
+// type DefaultProps = Partial<typeof defaultProps>;
+interface OwnProps {
   addTodo: (data: Todo) => void;
 }
+
+type Props = OwnProps & DefaultProps;
 
 interface State {
   text: string;
@@ -13,6 +23,7 @@ interface State {
 let id = 0;
 
 class TodoInput extends React.Component<Props, State> {
+  // static defaultProps: DefaultProps = defaultProps;
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -41,13 +52,14 @@ class TodoInput extends React.Component<Props, State> {
 
   render(): React.ReactNode {
     const { text } = this.state;
+    const { settings } = this.props;
     return (
       <div>
-        <Input value={text} onChange={this.handleChange} />
+        <Input value={text} onChange={this.handleChange} {...settings} />
         <Button onClick={this.handleSubmit}>添加</Button>
         {/* <form onSubmit={this.handleSubmit}>
           <input
-            type='text'
+            type='text' 
             value={this.state.text}
             onChange={this.handleChange}
           />
@@ -58,4 +70,4 @@ class TodoInput extends React.Component<Props, State> {
   }
 }
 
-export default TodoInput;
+export default withDefaultProps(TodoInput);
