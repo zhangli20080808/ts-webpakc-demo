@@ -4,7 +4,6 @@ import { Button } from 'antd';
 import { CombineState, CounterState } from '../store/reducers';
 import * as actions from '../store/actions/counter';
 // type PropsWithChildren<P = unknown> = P & { children?: ReactNode | undefined };
-
 type Props = CounterState & typeof actions & { children?: PropsWithChildren };
 class Counter extends React.Component<Props> {
   render() {
