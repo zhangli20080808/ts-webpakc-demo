@@ -1,21 +1,25 @@
 import React, { PropsWithChildren } from 'react';
-
+import { connect } from 'react-redux';
+import { Button } from 'antd';
+import { CombineState, CounterState } from '../store/reducers';
+import * as actions from '../store/actions/counter';
 // type PropsWithChildren<P = unknown> = P & { children?: ReactNode | undefined };
-interface Props {
-  number: number;
-  // 在 React 18 的 FC 中，不存在 children 属性，需要手动申明
-  children: PropsWithChildren;
-}
-export default class Counter extends React.Component<Props> {
+
+type Props = CounterState & typeof actions & { children?: PropsWithChildren };
+class Counter extends React.Component<Props> {
   render() {
-    const { number, children } = this.props;
+    const { count, add, minus, children } = this.props;
     return (
       <div>
-        <p>{number}</p>
+        <Button onClick={add}>+</Button>
+        <p>{count}</p>
+        <Button onClick={minus}>-</Button>
       </div>
     );
   }
 }
+const mapStateToProps = (state: CombineState): CounterState => state.counter;
+export default connect(mapStateToProps, actions)(Counter);
 
 const MyButton: React.FC<PropsWithChildren<{ color: string }>> = ({
   children,

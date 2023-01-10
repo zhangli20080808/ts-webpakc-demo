@@ -1,9 +1,9 @@
 import { ADD, MINUS } from '../../action-type';
 
-function add() {
+export function add() {
   return { type: ADD };
 }
-function minus() {
+export function minus() {
   return { type: MINUS };
 }
 
